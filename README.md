@@ -21,7 +21,7 @@ Build binary/executable of `hello.go`:
 go build hello.go
 ```
 
-Run binary/executable of `hello.go`:
+Run binary/executable named simply `hello`:
 
 ```bash
 ./hello
@@ -29,7 +29,7 @@ Run binary/executable of `hello.go`:
 
 ## Compile and execute in one step*
 
-(*BUT does NOT create executable):
+(*BUT does NOT create executable `hello`):
 
 ```bash
 go run hello.go
