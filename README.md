@@ -8,6 +8,13 @@ Tutorial from Google and Codecademy: <https://www.codecademy.com/learn/learn-go>
 
 Download Golang: <https://golang.org/dl>
 
+**Aside:** You might also want to set up your `.bash_profile`:
+
+```bash
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+```
+
 Build binary/executable of `hello.go`:
 
 ```bash
@@ -18,13 +25,6 @@ Run binary/executable of `hello.go`:
 
 ```bash
 ./hello
-```
-
-Besides that, you might also want to set up your `.bash_profile`:
-
-```bash
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
 ```
 
 ## To install Golang linter
