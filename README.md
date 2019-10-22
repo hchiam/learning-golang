@@ -40,3 +40,11 @@ go run hello.go
 ```bash
 go get -u golang.org/x/lint/golint
 ```
+
+## To get documentation on something
+
+Example: to make the CLI show documentation on the `Println` function of `fmt`:
+
+```bash
+go doc fmt.Println
+```
