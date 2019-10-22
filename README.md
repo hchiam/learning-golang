@@ -27,6 +27,14 @@ Run binary/executable of `hello.go`:
 ./hello
 ```
 
+## Compile and execute in one step*
+
+(*BUT does NOT create executable):
+
+```bash
+go run hello.go
+```
+
 ## To install Golang linter
 
 ```bash
