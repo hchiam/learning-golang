@@ -5,6 +5,10 @@ import (
 	t "time"
 )
 
+func hi() {
+	fmt.Println("hi")
+}
+
 func main() {
 	// single-line comment
 	/* multi-line
@@ -41,4 +45,6 @@ func main() {
 	fmt.Println("uninitialized boolean == false is", anUninitializedBoolean == false)
 	var anUninitializedString string
 	fmt.Println("uninitialized string == \"\" is", anUninitializedString == "")
+
+	hi()
 }
