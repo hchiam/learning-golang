@@ -7,3 +7,5 @@ go run index.go
 ```
 
 <https://github.com/gofiber/fiber>
+
+<https://github.com/gofiber/recipes>
