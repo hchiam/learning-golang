@@ -52,3 +52,38 @@ Example: to make the CLI show documentation on the `Println` function of `fmt`:
 ```bash
 go doc fmt.Println
 ```
+
+## Miscellaneous notes
+
+- `:=` = declare variable and assign value (type can be inferenced), e.g. `var x int = 1`
+- `=` = re-assign (variable must already exist in scope), e.g. `x = 2`
+- `go something()` = run `something()` concurrently (in a "goroutine")
+- to combine results from multiple goroutines, you can use channels, which are blocking until the other side is ready when they send/receive (allowing goroutines to synchronize without explicit locks or condition variables):
+  - e.g.:
+
+        ```go
+        package main
+
+        import "fmt"
+
+        func sum(s []int, c chan int) {
+            sum := 0
+            for _, v := range s {
+                sum += v
+            }
+            c <- sum // send sum to channel c
+        }
+
+        func main() {
+            s := []int{7, 2, 8, -9, 4, 0}
+
+            bufferSize := 1 // optional. "Sends to a buffered channel block only when the buffer is full. Receives block when the buffer is empty."
+            c := make(chan int, bufferSize) // create and use the same channel c for the goroutines:
+            go sum(s[:len(s)/2], c) // process 1st half concurrently
+            go sum(s[len(s)/2:], c) // process 2nd half concurrently
+            x, y := <-c, <-c // receive from channel c
+
+            fmt.Println(x, y, x+y)
+        }
+        ```
+    - not quite sure what "Sends to a buffered channel block only when the buffer is full. Receives block when the buffer is empty." means in <https://go.dev/tour/concurrency/3>
