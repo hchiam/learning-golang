@@ -140,3 +140,5 @@ go doc fmt.Println
         }
 
         ```
+
+- web crawler exercise: <https://go.dev/tour/concurrency/10>
