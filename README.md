@@ -92,3 +92,4 @@ go doc fmt.Println
     - i.e., the goroutine function being called should `close(c)`
   - "Channels aren't like files; you don't usually need to close them. Closing is only necessary when the receiver must be told there are no more values coming, such as to terminate a range loop." <https://go.dev/tour/concurrency/4>
 - select statement `for { select { case c <- x: ... case <-quit: ... return } }` "lets a goroutine wait on multiple communication operations" <https://go.dev/tour/concurrency/5> and blocks until one case can run, and if multiple are ready it chooses one at random to run.
+  - `default:` case also exists if you want to run something when no other is ready, and also lets you send/receive without blocking
