@@ -55,7 +55,7 @@ go doc fmt.Println
 
 ## Miscellaneous notes
 
-- `:=` = declare variable and assign value (type can be inferenced), e.g. `var x int = 1`
+- `:=` = declare variable and assign value (type can be inferenced), e.g. `var x int := 1`
 - `=` = re-assign (variable must already exist in scope), e.g. `x = 2`
 - `go something()` = run `something()` concurrently (in a "goroutine")
 - to combine results from multiple goroutines, you can use channels, which are blocking until the other side is ready when they send/receive (allowing goroutines to synchronize without explicit locks or condition variables):
