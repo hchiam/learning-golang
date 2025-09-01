@@ -87,3 +87,7 @@ go doc fmt.Println
         }
         ```
     - not quite sure what "Sends to a buffered channel block only when the buffer is full. Receives block when the buffer is empty." means in <https://go.dev/tour/concurrency/3>
+- `value, didChannelClose := <-c`
+  - "Only the sender should close a channel, never the receiver. Sending on a closed channel will cause a panic." <https://go.dev/tour/concurrency/4>
+    - i.e., the goroutine function being called should `close(c)`
+  - "Channels aren't like files; you don't usually need to close them. Closing is only necessary when the receiver must be told there are no more values coming, such as to terminate a range loop." <https://go.dev/tour/concurrency/4>
