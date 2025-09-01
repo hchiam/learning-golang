@@ -2,6 +2,10 @@
 
 Just one of the things I'm learning: <https://github.com/hchiam/learning>
 
+You can format and run go code for free in the browser: <https://go.dev/play/>
+
+Learn more about concurrency, channels, and application example exercises, at <https://go.dev/tour/concurrency/1>
+
 Tutorial from Google and Codecademy: <https://www.codecademy.com/learn/learn-go>
 
 ## [Basic local setup](https://www.codecademy.com/articles/setting-up-go-locally)
