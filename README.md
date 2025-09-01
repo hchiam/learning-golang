@@ -96,7 +96,7 @@ go doc fmt.Println
 - `sync.Mutex` for **"mutual exclusion"** if you just want to make sure only one goroutine at a time can access a variable, and don't need channels for communication among goroutines
   - `.Lock()`
   - `.Unlock()`
-    - e.g.: <https://go.dev/tour/concurrency/9>
+    - e.g.: based off of <https://go.dev/tour/concurrency/9>
 
         ```go
         package main
