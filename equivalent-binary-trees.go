@@ -19,7 +19,7 @@ import (
 // from the tree to the channel c.
 func Walk(t *tree.Tree, c chan int) {
 	_walk(t, c)
-	close(c)
+	close(c) // because need to close channel
 }
 
 func _walk(t *tree.Tree, c chan int) {
