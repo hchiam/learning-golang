@@ -58,7 +58,7 @@ go doc fmt.Println
 - `:=` = declare variable and assign value (type can be inferenced), e.g. `var x int := 1`
 - `=` = re-assign (variable must already exist in scope), e.g. `x = 2`
 - `go something()` = run `something()` concurrently (in a "goroutine")
-- to combine results from multiple goroutines, you can use channels, which are blocking until the other side is ready when they send/receive (allowing goroutines to synchronize without explicit locks or condition variables):
+- **channels:** to combine results from multiple goroutines, you can use channels, which are blocking until the other side is ready when they send/receive (allowing goroutines to synchronize without explicit locks or condition variables):
   - e.g.:
 
         ```go
@@ -93,3 +93,50 @@ go doc fmt.Println
   - "Channels aren't like files; you don't usually need to close them. Closing is only necessary when the receiver must be told there are no more values coming, such as to terminate a range loop." <https://go.dev/tour/concurrency/4>
 - select statement `for { select { case c <- x: ... case <-quit: ... return } }` "lets a goroutine wait on multiple communication operations" <https://go.dev/tour/concurrency/5> and blocks until one case can run, and if multiple are ready it chooses one at random to run.
   - `default:` case also exists if you want to run something when no other is ready, and also lets you send/receive without blocking
+- `sync.Mutex` for **"mutual exclusion"** if you just want to make sure only one goroutine at a time can access a variable, and don't need channels for communication among goroutines
+  - `.Lock()`
+  - `.Unlock()`
+    - e.g.: <https://go.dev/tour/concurrency/9>
+
+        ```go
+        package main
+
+        import (
+            "fmt"
+            "sync"
+            "time"
+        )
+
+        type SafeCounter struct {
+            mu sync.Mutex
+            v  map[string]int
+        }
+
+        // "SafeCounter.Inc('someKey')"
+        func (c *SafeCounter) Inc(key string) {
+            c.mu.Lock()
+            // Lock so only 1 goroutine can access (incl. edit) "SafeCounter.v"
+            c.v[key]++
+            c.mu.Unlock()
+        }
+
+        // "SafeCounter.Value"
+        func (c *SafeCounter) Value(key string) int {
+            c.mu.Lock()
+            // Lock so only 1 goroutine can access (incl. read) "SafeCounter.v"
+            defer c.mu.Unlock()
+            return c.v[key]
+        }
+
+        func main() {
+            c := SafeCounter{v: make(map[string]int)}
+            for i := 0; i < 1000; i++ {
+                go c.Inc("someKey")
+            }
+
+            time.Sleep(time.Second)
+            fmt.Println(c.Value("someKey"))
+            // prints out 1000
+        }
+
+        ```
